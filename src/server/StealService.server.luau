@@ -9,6 +9,16 @@ local GameState = require(script.Parent:WaitForChild("GameState"))
 
 local LockBase = ReplicatedStorage:WaitForChild("LockBase")
 
+-- Paints both gate posts of a base one colour (red while locked).
+local function setGateColors(baseIndex, color)
+	for _, side in ipairs({ "GateLeft", "GateRight" }) do
+		local gate = workspace:FindFirstChild("Base" .. tostring(baseIndex) .. "_" .. side)
+		if gate then
+			gate.Color = color
+		end
+	end
+end
+
 -- Buys a 60-second lock: thieves clicking this base get turned away.
 function StealService_lockBaseAgainstTheft(player)
 	local data = GameState.ensurePlayerData(player)
@@ -28,22 +38,9 @@ function StealService_lockBaseAgainstTheft(player)
 	data.cash -= GameState.LOCK_COST
 	base.lockedUntil = os.time() + GameState.LOCK_SECONDS
 	GameState.syncLeaderstats(player)
-	local gateLeft = workspace:FindFirstChild("Base" .. tostring(data.baseIndex) .. "_GateLeft")
-	local gateRight = workspace:FindFirstChild("Base" .. tostring(data.baseIndex) .. "_GateRight")
-	if gateLeft then
-		gateLeft.Color = Color3.fromRGB(255, 0, 0)
-	end
-	if gateRight then
-		gateRight.Color = Color3.fromRGB(255, 0, 0)
-	end
+	setGateColors(data.baseIndex, Color3.fromRGB(255, 0, 0))
 	task.delay(GameState.LOCK_SECONDS, function()
-		local gateColor = GameState.BASES[data.baseIndex].color
-		if gateLeft then
-			gateLeft.Color = gateColor
-		end
-		if gateRight then
-			gateRight.Color = gateColor
-		end
+		setGateColors(data.baseIndex, GameState.BASES[data.baseIndex].color)
 	end)
 	GameState.notifyPlayer(player, "Base locked for " .. tostring(GameState.LOCK_SECONDS) .. "s! Nobody can steal from you.")
 end

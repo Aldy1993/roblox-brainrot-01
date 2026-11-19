@@ -12,20 +12,12 @@ local function setupLeaderstats(player)
 	leaderstats.Name = "leaderstats"
 	leaderstats.Parent = player
 
-	local cash = Instance.new("IntValue")
-	cash.Name = "Cash"
-	cash.Value = GameState.START_CASH
-	cash.Parent = leaderstats
-
-	local income = Instance.new("IntValue")
-	income.Name = "IncomePerSec"
-	income.Value = 0
-	income.Parent = leaderstats
-
-	local rebirths = Instance.new("IntValue")
-	rebirths.Name = "Rebirths"
-	rebirths.Value = 0
-	rebirths.Parent = leaderstats
+	for _, spec in ipairs({ { "Cash", GameState.START_CASH }, { "IncomePerSec", 0 }, { "Rebirths", 0 } }) do
+		local value = Instance.new("IntValue")
+		value.Name = spec[1]
+		value.Value = spec[2]
+		value.Parent = leaderstats
+	end
 
 	GameState.ensurePlayerData(player)
 	GameState.syncLeaderstats(player)

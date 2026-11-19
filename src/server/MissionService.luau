@@ -1,10 +1,7 @@
--- MissionService: the mission bar. One mission at a time, in order; each
--- pays cash the moment it is done and the next one takes its place. The
--- progress lives in the player's GameState data (one state store), the
--- definitions live here. Services report the events missions watch:
--- EconomyService reports earnings, HazardService reports a survived
--- tsunami, RebirthService reports a rebirth, and brainrots landing in a
--- base re-check the owned-count missions through BrainrotPlaced.
+-- MissionService: one mission at a time, in order; each pays cash the
+-- moment it is done. Services report the events missions watch: Economy
+-- reports earnings, Hazard reports a survived tsunami, Rebirth reports a
+-- rebirth, and brainrots landing in a base re-check owned-count missions.
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")

@@ -8,7 +8,7 @@ local GameState = require(script.Parent:WaitForChild("GameState"))
 
 local UpgradeBase = ReplicatedStorage:WaitForChild("UpgradeBase")
 
-local UPGRADE_STEPS = { 1000, 2000 }
+local UPGRADE_STEPS = { 1000, 2000, 4000 }
 
 local function makeSignGui(baseIndex, signPart)
 	local gui = Instance.new("BillboardGui")

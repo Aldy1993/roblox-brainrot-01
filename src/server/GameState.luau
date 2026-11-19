@@ -11,7 +11,7 @@ local GameState = {}
 
 GameState.START_CASH = 100
 GameState.START_SLOTS = 6
-GameState.MAX_SLOTS = 10
+GameState.MAX_SLOTS = 12
 GameState.LOCK_COST = 250
 GameState.LOCK_SECONDS = 60
 GameState.STEAL_SECONDS = 15
@@ -21,16 +21,21 @@ GameState.CONVEYOR_Y = 2.6
 GameState.MAX_CONVEYOR_BRAINROTS = 12
 
 -- Base layout: must match the platforms built in default.project.json.
-GameState.BASES = {
-	{ name = "Noodle Nest", center = Vector3.new(-85, 0, -85), color = Color3.fromRGB(217, 31, 31) },
-	{ name = "Banana Bay", center = Vector3.new(85, 0, -85), color = Color3.fromRGB(31, 89, 230) },
-	{ name = "Pizza Plaza", center = Vector3.new(-85, 0, 85), color = Color3.fromRGB(242, 191, 26) },
-	{ name = "Toaster Town", center = Vector3.new(85, 0, 85), color = Color3.fromRGB(31, 191, 64) },
-	{ name = "Pickle Park", center = Vector3.new(-85, 0, 0), color = Color3.fromRGB(140, 51, 217) },
-	{ name = "Spaghetti Station", center = Vector3.new(85, 0, 0), color = Color3.fromRGB(242, 115, 20) },
-	{ name = "Granny Grove", center = Vector3.new(0, 0, -85), color = Color3.fromRGB(242, 89, 166) },
-	{ name = "Ohio Outpost", center = Vector3.new(0, 0, 85), color = Color3.fromRGB(20, 191, 217) },
+-- One compact row per base: name, center X, center Z, sign colour hex.
+local BASE_ROWS = {
+	{ "Noodle Nest", -85, -85, "#D91F1F" },
+	{ "Banana Bay", 85, -85, "#1F59E6" },
+	{ "Pizza Plaza", -85, 85, "#F2BF1A" },
+	{ "Toaster Town", 85, 85, "#1FBF40" },
+	{ "Pickle Park", -85, 0, "#8C33D9" },
+	{ "Spaghetti Station", 85, 0, "#F27314" },
+	{ "Granny Grove", 0, -85, "#F259A6" },
+	{ "Ohio Outpost", 0, 85, "#14BFD9" },
 }
+GameState.BASES = {}
+for _, r in ipairs(BASE_ROWS) do
+	table.insert(GameState.BASES, { name = r[1], center = Vector3.new(r[2], 0, r[3]), color = Color3.fromHex(r[4]) })
+end
 
 GameState.playerData = {}
 GameState.bases = {}
@@ -63,8 +68,7 @@ function GameState.ensurePlayerData(player)
 	local data = GameState.playerData[player]
 	if not data then
 		-- lifetimeEarned feeds the "earn $X total" missions; found is the
-		-- set of brainrot names this player has ever owned (Index grid);
-		-- missions holds the mission-bar progress (see MissionService).
+		-- set of brainrot names ever owned (Index grid).
 		data = { cash = GameState.START_CASH, rebirths = 0, multiplier = 1, baseIndex = 0, income = 0, lifetimeEarned = 0, found = {}, missions = { index = 1, tsunamiDone = false, rebirthDone = false } }
 		GameState.playerData[player] = data
 	end
@@ -95,21 +99,16 @@ function GameState.syncLeaderstats(player)
 	if not leaderstats then
 		return
 	end
-	local cash = leaderstats:FindFirstChild("Cash")
-	if cash then
-		cash.Value = math.floor(data.cash)
-	end
-	local income = leaderstats:FindFirstChild("IncomePerSec")
-	if income then
-		income.Value = math.floor(data.income)
-	end
-	local rebirths = leaderstats:FindFirstChild("Rebirths")
-	if rebirths then
-		rebirths.Value = data.rebirths
+	local values = { Cash = math.floor(data.cash), IncomePerSec = math.floor(data.income), Rebirths = data.rebirths }
+	for name, value in pairs(values) do
+		local stat = leaderstats:FindFirstChild(name)
+		if stat then
+			stat.Value = value
+		end
 	end
 end
 
--- Slot grid inside a base: 3 columns, rows of 3, first 10 used.
+-- Slot grid inside a base: 3 columns, rows of 3, first 12 used.
 function GameState.slotPosition(baseIndex, slotIndex)
 	local base = GameState.BASES[baseIndex]
 	local columns = { -6, 0, 6 }

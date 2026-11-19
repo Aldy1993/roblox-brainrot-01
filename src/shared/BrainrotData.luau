@@ -25,41 +25,87 @@ BrainrotData.RARITY_WEIGHTS = {
 	["Brainrot God"] = 2,
 }
 
--- The cast. cost is the buy price, income is cash per second at x1.
--- bodyColor / headColor paint the Part model; accessory picks the extra
--- piece the model builder sticks on top.
-BrainrotData.CAST = {
-	{ name = "Noodle Cat", rarity = "Common", cost = 10, income = 1, bodyColor = Color3.fromRGB(255, 220, 130), headColor = Color3.fromRGB(255, 240, 180), accessory = "ears", accessoryColor = Color3.fromRGB(255, 220, 130) },
-	{ name = "Soggy Cereal Goblin", rarity = "Common", cost = 15, income = 1, bodyColor = Color3.fromRGB(200, 170, 120), headColor = Color3.fromRGB(230, 200, 150), accessory = "ears", accessoryColor = Color3.fromRGB(200, 170, 120) },
-	{ name = "Toilet Duck", rarity = "Common", cost = 25, income = 2, bodyColor = Color3.fromRGB(255, 235, 80), headColor = Color3.fromRGB(255, 245, 150), accessory = "hat", accessoryColor = Color3.fromRGB(240, 240, 240) },
-	{ name = "Traffic Cone Crab", rarity = "Common", cost = 40, income = 3, bodyColor = Color3.fromRGB(255, 110, 40), headColor = Color3.fromRGB(255, 150, 80), accessory = "horn", accessoryColor = Color3.fromRGB(255, 200, 40) },
-	{ name = "Bubblegum Pigeon", rarity = "Common", cost = 60, income = 4, bodyColor = Color3.fromRGB(255, 140, 200), headColor = Color3.fromRGB(255, 180, 220), accessory = "wings", accessoryColor = Color3.fromRGB(255, 120, 180) },
-	{ name = "Couch Potato Knight", rarity = "Common", cost = 80, income = 4, bodyColor = Color3.fromRGB(140, 90, 60), headColor = Color3.fromRGB(180, 130, 90), accessory = "hat", accessoryColor = Color3.fromRGB(120, 120, 120) },
-	{ name = "Banana Shark", rarity = "Rare", cost = 100, income = 5, bodyColor = Color3.fromRGB(255, 220, 60), headColor = Color3.fromRGB(120, 170, 255), accessory = "fin", accessoryColor = Color3.fromRGB(90, 140, 230) },
-	{ name = "Disco Microwave", rarity = "Rare", cost = 175, income = 8, bodyColor = Color3.fromRGB(120, 120, 130), headColor = Color3.fromRGB(200, 200, 210), accessory = "antenna", accessoryColor = Color3.fromRGB(255, 80, 200) },
-	{ name = "Pizza Rat King", rarity = "Rare", cost = 250, income = 12, bodyColor = Color3.fromRGB(150, 110, 80), headColor = Color3.fromRGB(180, 140, 100), accessory = "crown", accessoryColor = Color3.fromRGB(255, 215, 0) },
-	{ name = "Sock Puppet Shark", rarity = "Rare", cost = 400, income = 18, bodyColor = Color3.fromRGB(120, 170, 255), headColor = Color3.fromRGB(200, 220, 255), accessory = "fin", accessoryColor = Color3.fromRGB(90, 140, 230) },
-	{ name = "Angry Houseplant", rarity = "Rare", cost = 600, income = 25, bodyColor = Color3.fromRGB(60, 160, 60), headColor = Color3.fromRGB(120, 220, 120), accessory = "horn", accessoryColor = Color3.fromRGB(200, 60, 60) },
-	{ name = "Skibidi Toaster", rarity = "Epic", cost = 1000, income = 30, bodyColor = Color3.fromRGB(200, 200, 210), headColor = Color3.fromRGB(120, 120, 130), accessory = "antenna", accessoryColor = Color3.fromRGB(255, 80, 80) },
-	{ name = "Laser Llama", rarity = "Epic", cost = 1750, income = 55, bodyColor = Color3.fromRGB(240, 240, 240), headColor = Color3.fromRGB(255, 255, 255), accessory = "glasses", accessoryColor = Color3.fromRGB(40, 40, 40) },
-	{ name = "Cursed Croissant", rarity = "Epic", cost = 2500, income = 75, bodyColor = Color3.fromRGB(220, 160, 70), headColor = Color3.fromRGB(240, 190, 100), accessory = "horn", accessoryColor = Color3.fromRGB(90, 40, 140) },
-	{ name = "Invisible Mime", rarity = "Epic", cost = 3200, income = 95, bodyColor = Color3.fromRGB(220, 220, 230), headColor = Color3.fromRGB(240, 240, 245), accessory = "hat", accessoryColor = Color3.fromRGB(30, 30, 35) },
-	{ name = "Haunted Vending Machine", rarity = "Epic", cost = 4000, income = 120, bodyColor = Color3.fromRGB(180, 60, 60), headColor = Color3.fromRGB(220, 100, 100), accessory = "antenna", accessoryColor = Color3.fromRGB(120, 220, 255) },
-	{ name = "Giga Chad Hamster", rarity = "Legendary", cost = 10000, income = 200, bodyColor = Color3.fromRGB(255, 180, 90), headColor = Color3.fromRGB(255, 205, 130), accessory = "crown", accessoryColor = Color3.fromRGB(255, 215, 0) },
-	{ name = "Turbo Grandpa", rarity = "Legendary", cost = 15000, income = 300, bodyColor = Color3.fromRGB(200, 200, 200), headColor = Color3.fromRGB(230, 210, 180), accessory = "glasses", accessoryColor = Color3.fromRGB(60, 60, 60) },
-	{ name = "Quantum Pickle", rarity = "Legendary", cost = 25000, income = 500, bodyColor = Color3.fromRGB(90, 200, 90), headColor = Color3.fromRGB(140, 230, 120), accessory = "halo", accessoryColor = Color3.fromRGB(255, 240, 150) },
-	{ name = "Disco Ball Dragon", rarity = "Legendary", cost = 40000, income = 800, bodyColor = Color3.fromRGB(200, 200, 210), headColor = Color3.fromRGB(230, 230, 240), accessory = "wings", accessoryColor = Color3.fromRGB(180, 180, 200) },
-	{ name = "President Pigeon", rarity = "Legendary", cost = 60000, income = 1200, bodyColor = Color3.fromRGB(100, 100, 110), headColor = Color3.fromRGB(150, 150, 160), accessory = "crown", accessoryColor = Color3.fromRGB(255, 215, 0) },
-	{ name = "Elon Muskrat", rarity = "Mythic", cost = 100000, income = 1500, bodyColor = Color3.fromRGB(110, 110, 120), headColor = Color3.fromRGB(190, 190, 200), accessory = "wings", accessoryColor = Color3.fromRGB(200, 200, 220) },
-	{ name = "Captain Microwave", rarity = "Mythic", cost = 175000, income = 2500, bodyColor = Color3.fromRGB(150, 150, 160), headColor = Color3.fromRGB(210, 210, 220), accessory = "antenna", accessoryColor = Color3.fromRGB(255, 200, 0) },
-	{ name = "Void Spaghetti Monster", rarity = "Mythic", cost = 250000, income = 4000, bodyColor = Color3.fromRGB(60, 20, 90), headColor = Color3.fromRGB(120, 50, 170), accessory = "horn", accessoryColor = Color3.fromRGB(170, 60, 220) },
-	{ name = "The Last WiFi Router", rarity = "Mythic", cost = 400000, income = 6000, bodyColor = Color3.fromRGB(60, 60, 70), headColor = Color3.fromRGB(110, 110, 130), accessory = "halo", accessoryColor = Color3.fromRGB(120, 220, 255) },
-	{ name = "Moon Cheese Wizard", rarity = "Mythic", cost = 750000, income = 8000, bodyColor = Color3.fromRGB(240, 230, 140), headColor = Color3.fromRGB(255, 245, 180), accessory = "hat", accessoryColor = Color3.fromRGB(90, 60, 180) },
-	{ name = "Sigma Granny", rarity = "Brainrot God", cost = 1000000, income = 10000, bodyColor = Color3.fromRGB(200, 160, 220), headColor = Color3.fromRGB(230, 200, 240), accessory = "halo", accessoryColor = Color3.fromRGB(255, 215, 0) },
-	{ name = "Galactic Toaster Overlord", rarity = "Brainrot God", cost = 2500000, income = 25000, bodyColor = Color3.fromRGB(180, 180, 200), headColor = Color3.fromRGB(220, 220, 240), accessory = "crown", accessoryColor = Color3.fromRGB(255, 215, 0) },
-	{ name = "Ohio Final Boss", rarity = "Brainrot God", cost = 5000000, income = 50000, bodyColor = Color3.fromRGB(40, 40, 45), headColor = Color3.fromRGB(255, 60, 60), accessory = "crown", accessoryColor = Color3.fromRGB(255, 215, 0) },
-	{ name = "The Eternal Loading Screen", rarity = "Brainrot God", cost = 10000000, income = 100000, bodyColor = Color3.fromRGB(40, 40, 50), headColor = Color3.fromRGB(90, 90, 110), accessory = "halo", accessoryColor = Color3.fromRGB(255, 215, 0) },
+-- The cast, one compact row per brainrot: name, rarity, cost, income,
+-- body hex, head hex, accessory, accessory hex. Rows are decoded
+-- into full records below, so the shop, the Index grid and the
+-- spawner all read BrainrotData.CAST exactly as before.
+local ROWS = {
+	{"Noodle Cat","Common",10,1,"#FFDC82","#FFF0B4","ears","#FFDC82"},
+	{"Soggy Cereal Goblin","Common",15,1,"#C8AA78","#E6C896","ears","#C8AA78"},
+	{"Pretzel Panda","Common",20,1,"#FFC864","#FFDC96","ears","#FFC864"},
+	{"Toilet Duck","Common",25,2,"#FFEB50","#FFF596","hat","#F0F0F0"},
+	{"Jellyfish Jam","Common",30,2,"#FF96C8","#FFBEDC","wings","#FF78B4"},
+	{"Cupcake Crab","Common",35,2,"#FFAAC8","#FFC8DC","fin","#FF64A0"},
+	{"Traffic Cone Crab","Common",40,3,"#FF6E28","#FF9650","horn","#FFC828"},
+	{"Macaroni Moose","Common",50,3,"#FFD250","#FFE68C","horn","#C87828"},
+	{"Bubblegum Pigeon","Common",60,4,"#FF8CC8","#FFB4DC","wings","#FF78B4"},
+	{"Popcorn Puffin","Common",65,4,"#FFF5DC","#FFFFF0","wings","#FFC83C"},
+	{"Honey Hamster","Common",70,4,"#FFC83C","#FFDC78","ears","#FFC83C"},
+	{"Couch Potato Knight","Common",80,4,"#8C5A3C","#B4825A","hat","#787878"},
+	{"Donut Dolphin","Common",85,4,"#FFB4C8","#FFD2E1","wings","#FF78B4"},
+	{"Waffle Walrus","Common",90,5,"#E6AA5A","#FAC882","fin","#E6AA5A"},
+	{"Banana Shark","Rare",100,5,"#FFDC3C","#78AAFF","fin","#5A8CE6"},
+	{"Wasabi Wombat","Rare",125,6,"#78DC50","#A0F078","horn","#FF3C3C"},
+	{"Salsa Sloth","Rare",150,7,"#FF7850","#FFA078","hat","#FFDC3C"},
+	{"Disco Microwave","Rare",175,8,"#787882","#C8C8D2","antenna","#FF50C8"},
+	{"Bagel Badger","Rare",200,10,"#C8965A","#E6B478","ears","#C8965A"},
+	{"Pizza Rat King","Rare",250,12,"#966E50","#B48C64","crown","#FFD700"},
+	{"Ramen Raccoon","Rare",300,15,"#787882","#B4B4BE","glasses","#3C3C3C"},
+	{"Avocado Alligator","Rare",350,16,"#78C850","#A0E678","fin","#78C850"},
+	{"Sock Puppet Shark","Rare",400,18,"#78AAFF","#C8DCFF","fin","#5A8CE6"},
+	{"Coconut Cobra","Rare",450,18,"#F0E6C8","#FFF5DC","horn","#C8A064"},
+	{"Curry Capybara","Rare",500,20,"#DC8C3C","#F0AA64","hat","#FFC828"},
+	{"Angry Houseplant","Rare",600,25,"#3CA03C","#78DC78","horn","#C83C3C"},
+	{"Skibidi Toaster","Epic",1000,30,"#C8C8D2","#787882","antenna","#FF5050"},
+	{"Nacho Ninja","Epic",1250,40,"#FFB428","#FFD25A","glasses","#282828"},
+	{"Burrito Bear","Epic",1500,45,"#DCB478","#F0CD96","hat","#C87828"},
+	{"Laser Llama","Epic",1750,55,"#F0F0F0","#FFFFFF","glasses","#282828"},
+	{"Kimchi Kraken","Epic",2000,60,"#FF5050","#FF8282","fin","#FF3C3C"},
+	{"Cursed Croissant","Epic",2500,75,"#DCA046","#F0BE64","horn","#5A288C"},
+	{"Mochi Moose","Epic",3000,90,"#F0E6FA","#FFF5FF","horn","#FFB4DC"},
+	{"Invisible Mime","Epic",3200,95,"#DCDCE6","#F0F0F5","hat","#1E1E23"},
+	{"Espresso Eagle","Epic",3500,100,"#5A3C28","#8C6446","wings","#5A3C28"},
+	{"Haunted Vending Machine","Epic",4000,120,"#B43C3C","#DC6464","antenna","#78DCFF"},
+	{"Sriracha Shark","Epic",4500,130,"#FF4632","#FF7864","fin","#FF3C28"},
+	{"Matcha Manta","Epic",5000,150,"#8CC878","#B4E6A0","wings","#8CC878"},
+	{"Giga Chad Hamster","Legendary",10000,200,"#FFB45A","#FFCD82","crown","#FFD700"},
+	{"Molten Marshmallow","Legendary",12500,250,"#FF783C","#FFAA6E","halo","#FFF096"},
+	{"Turbo Grandpa","Legendary",15000,300,"#C8C8C8","#E6D2B4","glasses","#3C3C3C"},
+	{"Frostbite Fox","Legendary",20000,400,"#B4DCFF","#D2EBFF","ears","#B4DCFF"},
+	{"Quantum Pickle","Legendary",25000,500,"#5AC85A","#8CE678","halo","#FFF096"},
+	{"Stormy Salmon","Legendary",30000,600,"#FF6E5A","#FFA08C","fin","#FF503C"},
+	{"Disco Ball Dragon","Legendary",40000,800,"#C8C8D2","#E6E6F0","wings","#B4B4C8"},
+	{"Obsidian Owl","Legendary",50000,1000,"#282832","#5A5A6E","wings","#282832"},
+	{"President Pigeon","Legendary",60000,1200,"#64646E","#9696A0","crown","#FFD700"},
+	{"Solar Sundae","Legendary",75000,1500,"#FFDC64","#FFF0A0","halo","#FFD700"},
+	{"Midnight Muffin","Legendary",80000,1600,"#3C325A","#6E5A8C","hat","#C8A0DC"},
+	{"Aurora Alpaca","Legendary",90000,1800,"#B4C8FF","#D2E1FF","halo","#FFF096"},
+	{"Elon Muskrat","Mythic",100000,1500,"#6E6E78","#BEBEC8","wings","#C8C8DC"},
+	{"Void Vulture","Mythic",125000,1800,"#3C145A","#7832AA","wings","#AA3CDC"},
+	{"Nebula Newt","Mythic",150000,2200,"#8C50DC","#B478F0","antenna","#78DCFF"},
+	{"Captain Microwave","Mythic",175000,2500,"#9696A0","#D2D2DC","antenna","#FFC800"},
+	{"Eclipse Elephant","Mythic",200000,3000,"#32323C","#646478","horn","#FFD700"},
+	{"Void Spaghetti Monster","Mythic",250000,4000,"#3C145A","#7832AA","horn","#AA3CDC"},
+	{"Quantum Quokka","Mythic",300000,4500,"#96C8FF","#BEDCFF","glasses","#3C3C3C"},
+	{"The Last WiFi Router","Mythic",400000,6000,"#3C3C46","#6E6E82","halo","#78DCFF"},
+	{"Celestial Crocodile","Mythic",500000,7000,"#C8E6FF","#E6F5FF","crown","#FFD700"},
+	{"Phoenix Pancake","Mythic",600000,7500,"#FF963C","#FFBE6E","wings","#FFD700"},
+	{"Moon Cheese Wizard","Mythic",750000,8000,"#F0E68C","#FFF5B4","hat","#5A3CB4"},
+	{"Sigma Granny","Brainrot God",1000000,10000,"#C8A0DC","#E6C8F0","halo","#FFD700"},
+	{"Infinity Ice Cream","Brainrot God",1500000,15000,"#FFC8E6","#FFE6F5","halo","#FFD700"},
+	{"Omnipotent Onion","Brainrot God",2000000,20000,"#C88CDC","#E6B4F0","crown","#FFD700"},
+	{"Galactic Toaster Overlord","Brainrot God",2500000,25000,"#B4B4C8","#DCDCF0","crown","#FFD700"},
+	{"Cosmic Curry","Brainrot God",3000000,30000,"#FFAA3C","#FFC878","halo","#FFD700"},
+	{"Ohio Final Boss","Brainrot God",5000000,50000,"#28282D","#FF3C3C","crown","#FFD700"},
+	{"Galactic Garlic","Brainrot God",7500000,75000,"#F0F0FA","#FFFFFF","crown","#FFD700"},
+	{"The Eternal Loading Screen","Brainrot God",10000000,100000,"#282832","#5A5A6E","halo","#FFD700"},
+	{"Ultimate Udon","Brainrot God",20000000,200000,"#FFF0C8","#FFFAE6","halo","#FFD700"},
 }
+local function dec(r)
+	return {name=r[1],rarity=r[2],cost=r[3],income=r[4],bodyColor=Color3.fromHex(r[5]),headColor=Color3.fromHex(r[6]),accessory=r[7],accessoryColor=Color3.fromHex(r[8])}
+end
+BrainrotData.CAST = {}
+for _, r in ipairs(ROWS) do table.insert(BrainrotData.CAST, dec(r)) end
 
 -- Mutations multiply the $/second. Rolled once when a brainrot spawns.
 BrainrotData.MUTATIONS = {
@@ -165,6 +211,33 @@ local function makeLabel(name, order, text, color, textSize)
 	return label
 end
 
+-- Accessory pieces per kind: name, size, position, optional PartType.
+-- The builder below sticks each listed piece onto the model.
+local ACCESSORY_PARTS = {
+	ears = {
+		{ "EarLeft", { 0.8, 1.2, 0.8 }, { -0.8, 3.9, 0 } },
+		{ "EarRight", { 0.8, 1.2, 0.8 }, { 0.8, 3.9, 0 } },
+	},
+	fin = { { "Fin", { 0.6, 2, 2.4 }, { 0, 3.7, 0 } } },
+	crown = { { "Crown", { 2.4, 0.8, 2.4 }, { 0, 3.9, 0 } } },
+	hat = { { "Hat", { 3, 0.8, 3 }, { 0, 3.9, 0 } } },
+	antenna = {
+		{ "Antenna", { 0.4, 2, 0.4 }, { 0, 4.4, 0 } },
+		{ "AntennaTip", { 1, 1, 1 }, { 0, 5.6, 0 }, Enum.PartType.Ball },
+	},
+	glasses = {
+		{ "GlassesLeft", { 1, 0.8, 0.4 }, { -0.7, 2.8, 1 } },
+		{ "GlassesRight", { 1, 0.8, 0.4 }, { 0.7, 2.8, 1 } },
+		{ "GlassesBridge", { 0.8, 0.3, 0.3 }, { 0, 2.8, 1 } },
+	},
+	horn = { { "Horn", { 0.8, 1.8, 0.8 }, { 0, 4, 0 } } },
+	halo = { { "Halo", { 3, 0.4, 3 }, { 0, 4.3, 0 } } },
+	wings = {
+		{ "WingLeft", { 2.5, 0.4, 1.5 }, { -2.4, 0.8, 0 } },
+		{ "WingRight", { 2.5, 0.4, 1.5 }, { 2.4, 0.8, 0 } },
+	},
+}
+
 -- Builds the visible 3D model for a brainrot record: body, head, feet,
 -- one accessory piece, and a floating label with name, rarity and $/sec.
 function BrainrotData.buildBrainrotModel(record)
@@ -183,44 +256,9 @@ function BrainrotData.buildBrainrotModel(record)
 	local footRight = makePart("FootRight", Vector3.new(1, 1, 1.5), record.headColor, Vector3.new(0.8, -1.8, 0))
 	footRight.Parent = model
 
-	local kind = record.accessory
-	if kind == "ears" then
-		local earLeft = makePart("EarLeft", Vector3.new(0.8, 1.2, 0.8), record.accessoryColor, Vector3.new(-0.8, 3.9, 0))
-		earLeft.Parent = model
-		local earRight = makePart("EarRight", Vector3.new(0.8, 1.2, 0.8), record.accessoryColor, Vector3.new(0.8, 3.9, 0))
-		earRight.Parent = model
-	elseif kind == "fin" then
-		local fin = makePart("Fin", Vector3.new(0.6, 2, 2.4), record.accessoryColor, Vector3.new(0, 3.7, 0))
-		fin.Parent = model
-	elseif kind == "crown" then
-		local crown = makePart("Crown", Vector3.new(2.4, 0.8, 2.4), record.accessoryColor, Vector3.new(0, 3.9, 0))
-		crown.Parent = model
-	elseif kind == "hat" then
-		local hat = makePart("Hat", Vector3.new(3, 0.8, 3), record.accessoryColor, Vector3.new(0, 3.9, 0))
-		hat.Parent = model
-	elseif kind == "antenna" then
-		local stick = makePart("Antenna", Vector3.new(0.4, 2, 0.4), record.accessoryColor, Vector3.new(0, 4.4, 0))
-		stick.Parent = model
-		local tip = makePart("AntennaTip", Vector3.new(1, 1, 1), record.accessoryColor, Vector3.new(0, 5.6, 0), Enum.PartType.Ball)
-		tip.Parent = model
-	elseif kind == "glasses" then
-		local lensLeft = makePart("GlassesLeft", Vector3.new(1, 0.8, 0.4), record.accessoryColor, Vector3.new(-0.7, 2.8, 1))
-		lensLeft.Parent = model
-		local lensRight = makePart("GlassesRight", Vector3.new(1, 0.8, 0.4), record.accessoryColor, Vector3.new(0.7, 2.8, 1))
-		lensRight.Parent = model
-		local bridge = makePart("GlassesBridge", Vector3.new(0.8, 0.3, 0.3), record.accessoryColor, Vector3.new(0, 2.8, 1))
-		bridge.Parent = model
-	elseif kind == "horn" then
-		local horn = makePart("Horn", Vector3.new(0.8, 1.8, 0.8), record.accessoryColor, Vector3.new(0, 4, 0))
-		horn.Parent = model
-	elseif kind == "halo" then
-		local halo = makePart("Halo", Vector3.new(3, 0.4, 3), record.accessoryColor, Vector3.new(0, 4.3, 0))
-		halo.Parent = model
-	elseif kind == "wings" then
-		local wingLeft = makePart("WingLeft", Vector3.new(2.5, 0.4, 1.5), record.accessoryColor, Vector3.new(-2.4, 0.8, 0))
-		wingLeft.Parent = model
-		local wingRight = makePart("WingRight", Vector3.new(2.5, 0.4, 1.5), record.accessoryColor, Vector3.new(2.4, 0.8, 0))
-		wingRight.Parent = model
+	for _, spec in ipairs(ACCESSORY_PARTS[record.accessory] or {}) do
+		local part = makePart(spec[1], Vector3.new(spec[2][1], spec[2][2], spec[2][3]), record.accessoryColor, Vector3.new(spec[3][1], spec[3][2], spec[3][3]), spec[4])
+		part.Parent = model
 	end
 
 	local displayName = record.name

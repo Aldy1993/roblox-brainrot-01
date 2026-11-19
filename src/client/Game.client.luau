@@ -29,15 +29,11 @@ gui.ResetOnSpawn = false
 gui.IgnoreGuiInset = false
 gui.Parent = playerGui
 
--- Hide Roblox's default "People" player list. Measured from the user's
--- Studio Play screenshot (~820px viewport): the list is ~400px wide (name
--- column + 3 leaderstat columns) and starts at ~52% of the screen, so it
--- covers the right end of our TopBar — and the gap between it and the
--- top-left menu icons (~0-23%) is only ~29% wide, too tight for the
--- TopBar at any smaller viewport. Our TopBar already shows the local
--- player's cash/income/rebirths, so hiding the default list loses nothing
--- and is the only deterministic fix. pcall + a 2s retry because the call
--- can fail if CoreGui isn't ready yet when this LocalScript runs.
+-- Hide Roblox's default "People" player list: measured from the user's
+-- Studio Play screenshot, it covers the right end of the TopBar, and the
+-- TopBar already shows the local player's cash/income/rebirths, so hiding
+-- it loses nothing. pcall + a 2s retry because the call can fail if
+-- CoreGui isn't ready yet when this LocalScript runs.
 local function hidePlayerList()
 	pcall(function()
 		StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, false)
@@ -91,22 +87,34 @@ local function makeButton(parent, name, position, size, text, color)
 	return button
 end
 
+-- One helper for every rounded panel: frame + optional corner, so the
+-- seven HUD panels below are each a single call with identical geometry.
+-- color nil = leave the default; cornerRadius nil = no rounded corner.
+local function makePanel(parent, name, anchor, position, size, color, transparency, cornerRadius)
+	local frame = Instance.new("Frame")
+	frame.Name = name
+	frame.AnchorPoint = anchor
+	frame.Position = position
+	frame.Size = size
+	if color then
+		frame.BackgroundColor3 = color
+	end
+	frame.BackgroundTransparency = transparency
+	frame.BorderSizePixel = 0
+	frame.Parent = parent
+	if cornerRadius then
+		local corner = Instance.new("UICorner")
+		corner.CornerRadius = UDim.new(0, cornerRadius)
+		corner.Parent = frame
+	end
+	return frame
+end
+
 -- Top-middle wallet bar: cash, income per second, rebirths. Scale-wide with a
 -- clamp so it stays clear of the top-left menu buttons at any viewport size.
 -- The default player list (which used to cover its right end) is hidden above.
-local topBar = Instance.new("Frame")
-topBar.Name = "TopBar"
-topBar.AnchorPoint = Vector2.new(0.5, 0)
-topBar.Position = UDim2.new(0.5, 0, 0, 8)
-topBar.Size = UDim2.new(0.32, 0, 0, 56)
-topBar.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
-topBar.BackgroundTransparency = 0.25
-topBar.BorderSizePixel = 0
-topBar.Parent = gui
+local topBar = makePanel(gui, "TopBar", Vector2.new(0.5, 0), UDim2.new(0.5, 0, 0, 8), UDim2.new(0.32, 0, 0, 56), Color3.fromRGB(20, 20, 30), 0.25, 10)
 addSizeConstraint(topBar, Vector2.new(300, 56), Vector2.new(420, 56))
-local topCorner = Instance.new("UICorner")
-topCorner.CornerRadius = UDim.new(0, 10)
-topCorner.Parent = topBar
 
 local cashLabel = makeLabel(topBar, "CashLabel", UDim2.new(0, 12, 0, 4), UDim2.new(0.55, 0, 0.5, 0), "Cash: $100", 22, Color3.fromRGB(120, 255, 140))
 local incomeLabel = makeLabel(topBar, "IncomeLabel", UDim2.new(0.58, 0, 0, 4), UDim2.new(0.42, -8, 0.5, 0), "$0/s", 22, Color3.fromRGB(120, 220, 255))
@@ -116,37 +124,17 @@ incomeLabel.TextScaled = true
 rebirthLabel.TextScaled = true
 
 -- Tsunami banner, hidden until a warning arrives.
-local tsunamiBanner = Instance.new("Frame")
-tsunamiBanner.Name = "TsunamiBanner"
-tsunamiBanner.AnchorPoint = Vector2.new(0.5, 0)
-tsunamiBanner.Position = UDim2.new(0.5, 0, 0, 72)
-tsunamiBanner.Size = UDim2.new(0.32, 0, 0, 44)
-tsunamiBanner.BackgroundColor3 = Color3.fromRGB(30, 120, 255)
-tsunamiBanner.BorderSizePixel = 0
+local tsunamiBanner = makePanel(gui, "TsunamiBanner", Vector2.new(0.5, 0), UDim2.new(0.5, 0, 0, 72), UDim2.new(0.32, 0, 0, 44), Color3.fromRGB(30, 120, 255), 0, 10)
 tsunamiBanner.Visible = false
-tsunamiBanner.Parent = gui
 addSizeConstraint(tsunamiBanner, Vector2.new(300, 44), Vector2.new(420, 44))
-local bannerCorner = Instance.new("UICorner")
-bannerCorner.CornerRadius = UDim.new(0, 10)
-bannerCorner.Parent = tsunamiBanner
 local tsunamiLabel = makeLabel(tsunamiBanner, "TsunamiLabel", UDim2.new(0, 8, 0, 0), UDim2.new(1, -16, 1, 0), "TSUNAMI INCOMING!", 22, Color3.fromRGB(255, 255, 255))
 tsunamiLabel.TextScaled = true
 
 -- Golden Hour banner, yellow, under the tsunami banner so the two never
 -- overlap even when both events run at once.
-local goldenBanner = Instance.new("Frame")
-goldenBanner.Name = "GoldenHourBanner"
-goldenBanner.AnchorPoint = Vector2.new(0.5, 0)
-goldenBanner.Position = UDim2.new(0.5, 0, 0, 122)
-goldenBanner.Size = UDim2.new(0.32, 0, 0, 44)
-goldenBanner.BackgroundColor3 = Color3.fromRGB(255, 200, 0)
-goldenBanner.BorderSizePixel = 0
+local goldenBanner = makePanel(gui, "GoldenHourBanner", Vector2.new(0.5, 0), UDim2.new(0.5, 0, 0, 122), UDim2.new(0.32, 0, 0, 44), Color3.fromRGB(255, 200, 0), 0, 10)
 goldenBanner.Visible = false
-goldenBanner.Parent = gui
 addSizeConstraint(goldenBanner, Vector2.new(300, 44), Vector2.new(420, 44))
-local goldenCorner = Instance.new("UICorner")
-goldenCorner.CornerRadius = UDim.new(0, 10)
-goldenCorner.Parent = goldenBanner
 local goldenLabel = makeLabel(goldenBanner, "GoldenHourLabel", UDim2.new(0, 8, 0, 0), UDim2.new(1, -16, 1, 0), "GOLDEN HOUR! BASES PAY x2", 22, Color3.fromRGB(20, 20, 30))
 goldenLabel.TextScaled = true
 
@@ -154,13 +142,7 @@ goldenLabel.TextScaled = true
 -- never collide with the leaderboard (top-right) or the bottom-centre
 -- message line. Buttons are laid out by a UIListLayout with scale heights
 -- so they always fit the panel exactly.
-local buttonPanel = Instance.new("Frame")
-buttonPanel.Name = "ButtonPanel"
-buttonPanel.AnchorPoint = Vector2.new(1, 1)
-buttonPanel.Position = UDim2.new(1, -12, 1, -12)
-buttonPanel.Size = UDim2.new(0.16, 0, 0.5, 0)
-buttonPanel.BackgroundTransparency = 1
-buttonPanel.Parent = gui
+local buttonPanel = makePanel(gui, "ButtonPanel", Vector2.new(1, 1), UDim2.new(1, -12, 1, -12), UDim2.new(0.16, 0, 0.5, 0), nil, 1, nil)
 addSizeConstraint(buttonPanel, Vector2.new(180, 220), Vector2.new(230, 280))
 
 local buttonList = Instance.new("UIListLayout")
@@ -177,7 +159,7 @@ local rebirthButton = makeButton(buttonPanel, "RebirthButton", UDim2.new(0, 0, 0
 rebirthButton.LayoutOrder = 3
 local upgradeButton = makeButton(buttonPanel, "UpgradeButton", UDim2.new(0, 0, 0, 0), UDim2.new(1, 0, 0.18, 0), "UPGRADE BASE (+2 slots)", Color3.fromRGB(40, 150, 70))
 upgradeButton.LayoutOrder = 4
-local indexButton = makeButton(buttonPanel, "IndexButton", UDim2.new(0, 0, 0, 0), UDim2.new(1, 0, 0.18, 0), "INDEX (0/30 found)", Color3.fromRGB(60, 120, 220))
+local indexButton = makeButton(buttonPanel, "IndexButton", UDim2.new(0, 0, 0, 0), UDim2.new(1, 0, 0.18, 0), "INDEX (0/" .. tostring(#BrainrotData.CAST) .. " found)", Color3.fromRGB(60, 120, 220))
 indexButton.LayoutOrder = 5
 
 -- Left-side shop list, built from the same data the server uses. It sits
@@ -185,19 +167,8 @@ indexButton.LayoutOrder = 5
 -- screen height, and the entries live in a ScrollingFrame with one label
 -- per brainrot, so long names wrap to a second line instead of spilling
 -- over the title or out of the frame.
-local shopFrame = Instance.new("Frame")
-shopFrame.Name = "ShopFrame"
-shopFrame.AnchorPoint = Vector2.new(0, 0)
-shopFrame.Position = UDim2.new(0, 12, 0.46, 0)
-shopFrame.Size = UDim2.new(0.20, 0, 0.50, 0)
-shopFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
-shopFrame.BackgroundTransparency = 0.25
-shopFrame.BorderSizePixel = 0
-shopFrame.Parent = gui
+local shopFrame = makePanel(gui, "ShopFrame", Vector2.new(0, 0), UDim2.new(0, 12, 0.46, 0), UDim2.new(0.20, 0, 0.50, 0), Color3.fromRGB(20, 20, 30), 0.25, 10)
 addSizeConstraint(shopFrame, Vector2.new(200, 230), Vector2.new(300, 420))
-local shopCorner = Instance.new("UICorner")
-shopCorner.CornerRadius = UDim.new(0, 10)
-shopCorner.Parent = shopFrame
 
 local shopTitle = makeLabel(shopFrame, "ShopTitle", UDim2.new(0, 10, 0, 6), UDim2.new(1, -20, 0, 26), "SHOP - watch the belt!", 18, Color3.fromRGB(255, 220, 120))
 shopTitle.TextScaled = true
@@ -220,19 +191,12 @@ shopListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 shopListLayout.Parent = shopScroll
 
 for _, entry in ipairs(BrainrotData.CAST) do
-	local line = Instance.new("TextLabel")
-	line.Name = "ShopEntry"
-	line.Size = UDim2.new(1, 0, 0, 18)
+	local line = makeLabel(shopScroll, "ShopEntry", UDim2.new(0, 0, 0, 0), UDim2.new(1, 0, 0, 18), entry.name .. " (" .. entry.rarity .. ") - " .. BrainrotData.formatMoney(entry.cost) .. " / " .. BrainrotData.formatMoney(entry.income) .. "/s", 13, Color3.fromRGB(230, 230, 230))
 	line.AutomaticSize = Enum.AutomaticSize.Y
-	line.BackgroundTransparency = 1
 	line.TextXAlignment = Enum.TextXAlignment.Left
 	line.TextYAlignment = Enum.TextYAlignment.Top
-	line.TextSize = 13
-	line.TextColor3 = Color3.fromRGB(230, 230, 230)
 	line.Font = Enum.Font.Gotham
 	line.TextWrapped = true
-	line.Text = entry.name .. " (" .. entry.rarity .. ") - " .. BrainrotData.formatMoney(entry.cost) .. " / " .. BrainrotData.formatMoney(entry.income) .. "/s"
-	line.Parent = shopScroll
 end
 
 -- Bottom-centre lines, stacked and scale-wide: the hint sits above the
@@ -259,18 +223,7 @@ hintCorner.Parent = hintLabel
 -- Mission bar, bottom-centre above the hint line: the current mission,
 -- its progress and its cash reward. The server sends MissionUpdate
 -- whenever progress moves or a mission is completed.
-local missionBar = Instance.new("Frame")
-missionBar.Name = "MissionBar"
-missionBar.AnchorPoint = Vector2.new(0.5, 0)
-missionBar.Position = UDim2.new(0.5, 0, 1, -118)
-missionBar.Size = UDim2.new(0.55, 0, 0, 32)
-missionBar.BackgroundColor3 = Color3.fromRGB(20, 20, 60)
-missionBar.BackgroundTransparency = 0.25
-missionBar.BorderSizePixel = 0
-missionBar.Parent = gui
-local missionCorner = Instance.new("UICorner")
-missionCorner.CornerRadius = UDim.new(0, 8)
-missionCorner.Parent = missionBar
+local missionBar = makePanel(gui, "MissionBar", Vector2.new(0.5, 0), UDim2.new(0.5, 0, 1, -118), UDim2.new(0.55, 0, 0, 32), Color3.fromRGB(20, 20, 60), 0.25, 8)
 local missionLabel = makeLabel(missionBar, "MissionLabel", UDim2.new(0, 10, 0, 0), UDim2.new(1, -20, 1, 0), "MISSION 1/7: Buy your first brainrot  0/1  +$100", 16, Color3.fromRGB(255, 255, 255))
 missionLabel.TextScaled = true
 
@@ -278,22 +231,11 @@ missionLabel.TextScaled = true
 -- their name in their rarity colour; the rest stay grey with a "?".
 -- Toggled by the INDEX button, hidden by default so it never covers the
 -- game while playing.
-local indexFrame = Instance.new("Frame")
-indexFrame.Name = "IndexFrame"
-indexFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-indexFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
-indexFrame.Size = UDim2.new(0.5, 0, 0.6, 0)
-indexFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
-indexFrame.BackgroundTransparency = 0.1
-indexFrame.BorderSizePixel = 0
+local indexFrame = makePanel(gui, "IndexFrame", Vector2.new(0.5, 0.5), UDim2.new(0.5, 0, 0.5, 0), UDim2.new(0.5, 0, 0.6, 0), Color3.fromRGB(20, 20, 30), 0.1, 12)
 indexFrame.Visible = false
-indexFrame.Parent = gui
 addSizeConstraint(indexFrame, Vector2.new(420, 300), Vector2.new(640, 480))
-local indexCorner = Instance.new("UICorner")
-indexCorner.CornerRadius = UDim.new(0, 12)
-indexCorner.Parent = indexFrame
 
-local indexTitle = makeLabel(indexFrame, "IndexTitle", UDim2.new(0, 12, 0, 8), UDim2.new(1, -24, 0, 30), "BRAINROT INDEX - 0/30 found", 20, Color3.fromRGB(255, 220, 120))
+local indexTitle = makeLabel(indexFrame, "IndexTitle", UDim2.new(0, 12, 0, 8), UDim2.new(1, -24, 0, 30), "BRAINROT INDEX - 0/" .. tostring(#BrainrotData.CAST) .. " found", 20, Color3.fromRGB(255, 220, 120))
 indexTitle.TextScaled = true
 
 local indexScroll = Instance.new("ScrollingFrame")

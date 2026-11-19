@@ -1,8 +1,6 @@
 -- GoldenHour: a timed x2 income event for Neon Island. Every few minutes
 -- the whole island goes golden: every base pays double for 60 seconds and
--- every client sees a yellow GOLDEN HOUR banner with a countdown. The
--- service script runs the schedule; startGoldenHour can also be called by
--- hand (or by the TOUR.json tour step) to force one early.
+-- every client sees a yellow GOLDEN HOUR banner with a countdown.
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
