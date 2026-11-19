@@ -4,6 +4,10 @@
 // the grader reads, then writes the dossier summary with the vendored
 // make.fun Roblox library. It only uses the Node standard library.
 //
+// The game it hands in: 30 original brainrots on Neon Island — conveyor,
+// 8 bases, steal/lock, a tsunami every 3 minutes, a Golden Hour paying x2
+// every 5 minutes, 7 missions, a 30-entry Index grid, and rebirths.
+//
 // Run it the way the grader does, pointing the output somewhere handy:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 

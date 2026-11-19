@@ -4,6 +4,8 @@
 local Players = game:GetService("Players")
 
 local GameState = require(script.Parent:WaitForChild("GameState"))
+local GoldenHour = require(script.Parent:WaitForChild("GoldenHour"))
+local MissionService = require(script.Parent:WaitForChild("MissionService"))
 
 local function setupLeaderstats(player)
 	local leaderstats = Instance.new("Folder")
@@ -35,10 +37,13 @@ function EconomyService_collectIncomePerSecond()
 		local data = GameState.playerData[player]
 		if data and data.baseIndex > 0 then
 			local basePay = GameState.baseIncome(data.baseIndex)
-			local payout = basePay * data.multiplier
+			-- Rebirth multiplier x Golden Hour multiplier (x2 while the
+			-- island is golden).
+			local payout = basePay * data.multiplier * GoldenHour.getMultiplier()
 			data.income = payout
 			if payout > 0 then
 				data.cash += payout
+				MissionService.addEarnings(player, payout)
 			end
 			GameState.syncLeaderstats(player)
 		end

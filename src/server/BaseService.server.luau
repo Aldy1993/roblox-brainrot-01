@@ -14,9 +14,12 @@ local function makeSignGui(baseIndex, signPart)
 	local gui = Instance.new("BillboardGui")
 	gui.Name = "BaseSign"
 	gui.Adornee = signPart
-	gui.Size = UDim2.new(0, 260, 0, 90)
+	gui.Size = UDim2.new(0, 200, 0, 64)
 	gui.StudsOffset = Vector3.new(0, 0, 0)
-	gui.AlwaysOnTop = true
+	-- NOT AlwaysOnTop: signs must not paint over the HUD or stack on top
+	-- of each other when several bases are in view.
+	gui.AlwaysOnTop = false
+	gui.MaxDistance = 160
 	gui.Parent = signPart
 
 	local title = Instance.new("TextLabel")

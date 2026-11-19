@@ -30,17 +30,35 @@ BrainrotData.RARITY_WEIGHTS = {
 -- piece the model builder sticks on top.
 BrainrotData.CAST = {
 	{ name = "Noodle Cat", rarity = "Common", cost = 10, income = 1, bodyColor = Color3.fromRGB(255, 220, 130), headColor = Color3.fromRGB(255, 240, 180), accessory = "ears", accessoryColor = Color3.fromRGB(255, 220, 130) },
+	{ name = "Soggy Cereal Goblin", rarity = "Common", cost = 15, income = 1, bodyColor = Color3.fromRGB(200, 170, 120), headColor = Color3.fromRGB(230, 200, 150), accessory = "ears", accessoryColor = Color3.fromRGB(200, 170, 120) },
 	{ name = "Toilet Duck", rarity = "Common", cost = 25, income = 2, bodyColor = Color3.fromRGB(255, 235, 80), headColor = Color3.fromRGB(255, 245, 150), accessory = "hat", accessoryColor = Color3.fromRGB(240, 240, 240) },
+	{ name = "Traffic Cone Crab", rarity = "Common", cost = 40, income = 3, bodyColor = Color3.fromRGB(255, 110, 40), headColor = Color3.fromRGB(255, 150, 80), accessory = "horn", accessoryColor = Color3.fromRGB(255, 200, 40) },
+	{ name = "Bubblegum Pigeon", rarity = "Common", cost = 60, income = 4, bodyColor = Color3.fromRGB(255, 140, 200), headColor = Color3.fromRGB(255, 180, 220), accessory = "wings", accessoryColor = Color3.fromRGB(255, 120, 180) },
+	{ name = "Couch Potato Knight", rarity = "Common", cost = 80, income = 4, bodyColor = Color3.fromRGB(140, 90, 60), headColor = Color3.fromRGB(180, 130, 90), accessory = "hat", accessoryColor = Color3.fromRGB(120, 120, 120) },
 	{ name = "Banana Shark", rarity = "Rare", cost = 100, income = 5, bodyColor = Color3.fromRGB(255, 220, 60), headColor = Color3.fromRGB(120, 170, 255), accessory = "fin", accessoryColor = Color3.fromRGB(90, 140, 230) },
+	{ name = "Disco Microwave", rarity = "Rare", cost = 175, income = 8, bodyColor = Color3.fromRGB(120, 120, 130), headColor = Color3.fromRGB(200, 200, 210), accessory = "antenna", accessoryColor = Color3.fromRGB(255, 80, 200) },
 	{ name = "Pizza Rat King", rarity = "Rare", cost = 250, income = 12, bodyColor = Color3.fromRGB(150, 110, 80), headColor = Color3.fromRGB(180, 140, 100), accessory = "crown", accessoryColor = Color3.fromRGB(255, 215, 0) },
+	{ name = "Sock Puppet Shark", rarity = "Rare", cost = 400, income = 18, bodyColor = Color3.fromRGB(120, 170, 255), headColor = Color3.fromRGB(200, 220, 255), accessory = "fin", accessoryColor = Color3.fromRGB(90, 140, 230) },
+	{ name = "Angry Houseplant", rarity = "Rare", cost = 600, income = 25, bodyColor = Color3.fromRGB(60, 160, 60), headColor = Color3.fromRGB(120, 220, 120), accessory = "horn", accessoryColor = Color3.fromRGB(200, 60, 60) },
 	{ name = "Skibidi Toaster", rarity = "Epic", cost = 1000, income = 30, bodyColor = Color3.fromRGB(200, 200, 210), headColor = Color3.fromRGB(120, 120, 130), accessory = "antenna", accessoryColor = Color3.fromRGB(255, 80, 80) },
+	{ name = "Laser Llama", rarity = "Epic", cost = 1750, income = 55, bodyColor = Color3.fromRGB(240, 240, 240), headColor = Color3.fromRGB(255, 255, 255), accessory = "glasses", accessoryColor = Color3.fromRGB(40, 40, 40) },
 	{ name = "Cursed Croissant", rarity = "Epic", cost = 2500, income = 75, bodyColor = Color3.fromRGB(220, 160, 70), headColor = Color3.fromRGB(240, 190, 100), accessory = "horn", accessoryColor = Color3.fromRGB(90, 40, 140) },
+	{ name = "Invisible Mime", rarity = "Epic", cost = 3200, income = 95, bodyColor = Color3.fromRGB(220, 220, 230), headColor = Color3.fromRGB(240, 240, 245), accessory = "hat", accessoryColor = Color3.fromRGB(30, 30, 35) },
+	{ name = "Haunted Vending Machine", rarity = "Epic", cost = 4000, income = 120, bodyColor = Color3.fromRGB(180, 60, 60), headColor = Color3.fromRGB(220, 100, 100), accessory = "antenna", accessoryColor = Color3.fromRGB(120, 220, 255) },
 	{ name = "Giga Chad Hamster", rarity = "Legendary", cost = 10000, income = 200, bodyColor = Color3.fromRGB(255, 180, 90), headColor = Color3.fromRGB(255, 205, 130), accessory = "crown", accessoryColor = Color3.fromRGB(255, 215, 0) },
+	{ name = "Turbo Grandpa", rarity = "Legendary", cost = 15000, income = 300, bodyColor = Color3.fromRGB(200, 200, 200), headColor = Color3.fromRGB(230, 210, 180), accessory = "glasses", accessoryColor = Color3.fromRGB(60, 60, 60) },
 	{ name = "Quantum Pickle", rarity = "Legendary", cost = 25000, income = 500, bodyColor = Color3.fromRGB(90, 200, 90), headColor = Color3.fromRGB(140, 230, 120), accessory = "halo", accessoryColor = Color3.fromRGB(255, 240, 150) },
+	{ name = "Disco Ball Dragon", rarity = "Legendary", cost = 40000, income = 800, bodyColor = Color3.fromRGB(200, 200, 210), headColor = Color3.fromRGB(230, 230, 240), accessory = "wings", accessoryColor = Color3.fromRGB(180, 180, 200) },
+	{ name = "President Pigeon", rarity = "Legendary", cost = 60000, income = 1200, bodyColor = Color3.fromRGB(100, 100, 110), headColor = Color3.fromRGB(150, 150, 160), accessory = "crown", accessoryColor = Color3.fromRGB(255, 215, 0) },
 	{ name = "Elon Muskrat", rarity = "Mythic", cost = 100000, income = 1500, bodyColor = Color3.fromRGB(110, 110, 120), headColor = Color3.fromRGB(190, 190, 200), accessory = "wings", accessoryColor = Color3.fromRGB(200, 200, 220) },
+	{ name = "Captain Microwave", rarity = "Mythic", cost = 175000, income = 2500, bodyColor = Color3.fromRGB(150, 150, 160), headColor = Color3.fromRGB(210, 210, 220), accessory = "antenna", accessoryColor = Color3.fromRGB(255, 200, 0) },
 	{ name = "Void Spaghetti Monster", rarity = "Mythic", cost = 250000, income = 4000, bodyColor = Color3.fromRGB(60, 20, 90), headColor = Color3.fromRGB(120, 50, 170), accessory = "horn", accessoryColor = Color3.fromRGB(170, 60, 220) },
+	{ name = "The Last WiFi Router", rarity = "Mythic", cost = 400000, income = 6000, bodyColor = Color3.fromRGB(60, 60, 70), headColor = Color3.fromRGB(110, 110, 130), accessory = "halo", accessoryColor = Color3.fromRGB(120, 220, 255) },
+	{ name = "Moon Cheese Wizard", rarity = "Mythic", cost = 750000, income = 8000, bodyColor = Color3.fromRGB(240, 230, 140), headColor = Color3.fromRGB(255, 245, 180), accessory = "hat", accessoryColor = Color3.fromRGB(90, 60, 180) },
 	{ name = "Sigma Granny", rarity = "Brainrot God", cost = 1000000, income = 10000, bodyColor = Color3.fromRGB(200, 160, 220), headColor = Color3.fromRGB(230, 200, 240), accessory = "halo", accessoryColor = Color3.fromRGB(255, 215, 0) },
+	{ name = "Galactic Toaster Overlord", rarity = "Brainrot God", cost = 2500000, income = 25000, bodyColor = Color3.fromRGB(180, 180, 200), headColor = Color3.fromRGB(220, 220, 240), accessory = "crown", accessoryColor = Color3.fromRGB(255, 215, 0) },
 	{ name = "Ohio Final Boss", rarity = "Brainrot God", cost = 5000000, income = 50000, bodyColor = Color3.fromRGB(40, 40, 45), headColor = Color3.fromRGB(255, 60, 60), accessory = "crown", accessoryColor = Color3.fromRGB(255, 215, 0) },
+	{ name = "The Eternal Loading Screen", rarity = "Brainrot God", cost = 10000000, income = 100000, bodyColor = Color3.fromRGB(40, 40, 50), headColor = Color3.fromRGB(90, 90, 110), accessory = "halo", accessoryColor = Color3.fromRGB(255, 215, 0) },
 }
 
 -- Mutations multiply the $/second. Rolled once when a brainrot spawns.
@@ -135,8 +153,8 @@ end
 local function makeLabel(name, order, text, color, textSize)
 	local label = Instance.new("TextLabel")
 	label.Name = name
-	label.Size = UDim2.new(1, 0, 0.34, 0)
-	label.Position = UDim2.new(0, 0, order * 0.33, 0)
+	label.Size = UDim2.new(1, 0, 1 / 3, 0)
+	label.Position = UDim2.new(0, 0, order * (1 / 3), 0)
 	label.BackgroundTransparency = 1
 	label.Text = text
 	label.TextColor3 = color
@@ -185,6 +203,13 @@ function BrainrotData.buildBrainrotModel(record)
 		stick.Parent = model
 		local tip = makePart("AntennaTip", Vector3.new(1, 1, 1), record.accessoryColor, Vector3.new(0, 5.6, 0), Enum.PartType.Ball)
 		tip.Parent = model
+	elseif kind == "glasses" then
+		local lensLeft = makePart("GlassesLeft", Vector3.new(1, 0.8, 0.4), record.accessoryColor, Vector3.new(-0.7, 2.8, 1))
+		lensLeft.Parent = model
+		local lensRight = makePart("GlassesRight", Vector3.new(1, 0.8, 0.4), record.accessoryColor, Vector3.new(0.7, 2.8, 1))
+		lensRight.Parent = model
+		local bridge = makePart("GlassesBridge", Vector3.new(0.8, 0.3, 0.3), record.accessoryColor, Vector3.new(0, 2.8, 1))
+		bridge.Parent = model
 	elseif kind == "horn" then
 		local horn = makePart("Horn", Vector3.new(0.8, 1.8, 0.8), record.accessoryColor, Vector3.new(0, 4, 0))
 		horn.Parent = model
@@ -203,12 +228,18 @@ function BrainrotData.buildBrainrotModel(record)
 		displayName = record.mutation .. " " .. record.name
 	end
 
+	-- Floating label: NOT AlwaysOnTop, so it never paints over the HUD
+	-- (shop panel, buttons) or over other labels; it hides past
+	-- MaxDistance so distant brainrots on the belt stay quiet. Kept small
+	-- (160x64, MaxDistance 90) so a title rarely drifts over the chat
+	-- hint line or the shop's left edge.
 	local billboard = Instance.new("BillboardGui")
 	billboard.Name = "BrainrotLabel"
 	billboard.Adornee = body
-	billboard.Size = UDim2.new(0, 220, 0, 90)
-	billboard.StudsOffset = Vector3.new(0, 5.5, 0)
-	billboard.AlwaysOnTop = true
+	billboard.Size = UDim2.new(0, 160, 0, 64)
+	billboard.StudsOffset = Vector3.new(0, 5, 0)
+	billboard.AlwaysOnTop = false
+	billboard.MaxDistance = 90
 	billboard.Parent = model
 
 	local nameLabel = makeLabel("NameLabel", 0, displayName, Color3.fromRGB(255, 255, 255), 22)

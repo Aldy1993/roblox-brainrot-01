@@ -5,6 +5,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local BrainrotData = require(ReplicatedStorage:WaitForChild("BrainrotData"))
 local GameState = require(script.Parent:WaitForChild("GameState"))
+local MissionService = require(script.Parent:WaitForChild("MissionService"))
 
 local RequestRebirth = ReplicatedStorage:WaitForChild("RequestRebirth")
 
@@ -29,6 +30,7 @@ function RebirthService_rebirthPlayer(player)
 	data.multiplier = 2 ^ data.rebirths
 	data.income = 0
 	GameState.syncLeaderstats(player)
+	MissionService.markRebirth(player)
 	GameState.notifyPlayer(player, "REBIRTH! Your income is now x" .. tostring(data.multiplier) .. " forever. Time to rebuild!")
 end
 

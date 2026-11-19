@@ -1,1 +1,1 @@
-{"steps":[{"screenshot":"1-thumbnail.png"},{"keys":["W"],"screenshot":"2-play.png","wait_ms":1500},{"keys":["W"],"screenshot":"3-end.png","wait_ms":1500}],"tour":1}
+{"steps":[{"screenshot":"1-thumbnail.png"},{"keys":["W"],"screenshot":"2-play.png","wait_ms":1500},{"keys":["W"],"screenshot":"3-end.png","wait_ms":1500},{"call":{"arg":60,"fn":"startGoldenHour","module":"ServerScriptService.Server.GoldenHour","on":"Server"},"screenshot":"4-golden-hour.png","wait_ms":2000}],"tour":1}

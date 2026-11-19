@@ -7,6 +7,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
 
 local GameState = require(script.Parent:WaitForChild("GameState"))
+local MissionService = require(script.Parent:WaitForChild("MissionService"))
 
 local GameEvent = ReplicatedStorage:WaitForChild("GameEvent")
 
@@ -64,6 +65,10 @@ function HazardService_triggerTsunamiWave()
 			end
 			if not safe then
 				HazardService_flingPlayerOutOfWave(player)
+			else
+				-- Standing safe in your own base when the wave passes
+				-- counts as surviving the tsunami (mission 4).
+				MissionService.markTsunamiSurvived(player)
 			end
 		end
 	end

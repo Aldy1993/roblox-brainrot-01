@@ -74,6 +74,7 @@ function StealService_carryStolenBrainrotHome(player)
 			GameState.carrying[player] = nil
 			local slotIndex = GameState.placeBrainrotInBase(data.baseIndex, carry.record, carry.model)
 			if slotIndex then
+				GameState.markBrainrotFound(player, carry.record.name)
 				GameState.notifyPlayer(player, "Stolen! " .. carry.record.name .. " is yours now.")
 			else
 				GameState.notifyPlayer(player, "Your base is full - the brainrot slipped away!")

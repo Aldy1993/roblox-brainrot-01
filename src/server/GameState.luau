@@ -62,10 +62,28 @@ end
 function GameState.ensurePlayerData(player)
 	local data = GameState.playerData[player]
 	if not data then
-		data = { cash = GameState.START_CASH, rebirths = 0, multiplier = 1, baseIndex = 0, income = 0 }
+		-- lifetimeEarned feeds the "earn $X total" missions; found is the
+		-- set of brainrot names this player has ever owned (Index grid);
+		-- missions holds the mission-bar progress (see MissionService).
+		data = { cash = GameState.START_CASH, rebirths = 0, multiplier = 1, baseIndex = 0, income = 0, lifetimeEarned = 0, found = {}, missions = { index = 1, tsunamiDone = false, rebirthDone = false } }
 		GameState.playerData[player] = data
 	end
 	return data
+end
+
+-- Records that a player has owned this brainrot name (for the Index grid)
+-- and tells their client the updated found list.
+function GameState.markBrainrotFound(player, recordName)
+	local data = GameState.ensurePlayerData(player)
+	if data.found[recordName] then
+		return
+	end
+	data.found[recordName] = true
+	local foundList = {}
+	for name in pairs(data.found) do
+		table.insert(foundList, name)
+	end
+	GameEvent:FireClient(player, "IndexUpdate", foundList)
 end
 
 function GameState.syncLeaderstats(player)
@@ -192,6 +210,7 @@ function GameState.buyBrainrotForPlayer(player, brainrotId)
 	end
 	data.cash -= entry.record.cost
 	GameState.placeBrainrotInBase(data.baseIndex, entry.record, entry.model)
+	GameState.markBrainrotFound(player, entry.record.name)
 	GameState.syncLeaderstats(player)
 	GameState.notifyPlayer(player, "Bought " .. entry.record.name .. " for " .. BrainrotData.formatMoney(entry.record.cost) .. "!")
 	return true
